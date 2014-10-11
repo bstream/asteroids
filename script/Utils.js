@@ -11,14 +11,16 @@ var Utils = {
   },
   
   distance: function(x1, y1, x2, y2) {
+    var dx,
+        dy;
     if (arguments.length > 2) {
-      var dx = x1 - x2;
-      var dy = y1 - y2;
+      dx = x1 - x2;
+      dy = y1 - y2;
 
       return Math.sqrt(dx * dx + dy * dy);
     } else {
-      var dx = x1.x - y1.x;
-      var dy = x1.y - y1.y;
+      dx = x1.x - y1.x;
+      dy = x1.y - y1.y;
 
       return Math.sqrt(dx * dx + dy * dy);
     }
@@ -29,13 +31,15 @@ var Utils = {
   },
 
   wrappedDistance: function(a, b, max) {
+    var l,
+        r;
     if (a === b) return 0;
     else if (a < b) {
-      var l = -a - max + b;
-      var r = b - a;
+      l = -a - max + b;
+      r = b - a;
     } else {
-      var l = b - a;
-      var r = max - a + b;
+      l = b - a;
+      r = max - a + b;
     }
 
     if (Math.abs(l) > Math.abs(r)) return r;

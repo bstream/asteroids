@@ -32,12 +32,16 @@ ENGINE.Asteroid.prototype = {
     this.hp -= data.damage;
 
     if (this.hp <= 0) {
-
-      if (this.splits) this.split();
-
+      app.playSound('asteroid-crush');
+      
+      if (this.splits) {
+        this.split();
+      }
+      
       this.collection.remove(this);
+    } else {
+      app.playSound('asteroid-hit');
     }
-
   },
 
   split: function() {
@@ -57,7 +61,9 @@ ENGINE.Asteroid.prototype = {
 
     /* lifespan */
 
-    if ((this.lifespan -= delta) < 0) this.collection.remove(this);
+    if ((this.lifespan -= delta) < 0) {
+      this.collection.remove(this);
+    }
 
     /* movement */
 

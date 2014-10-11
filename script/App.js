@@ -9,7 +9,8 @@ var app = playground({
 
   create: function() {
 
-    this.loadImages("spritesheet");
+    this.loadImages('spritesheet');
+    this.loadSounds('asteroid-crush', 'asteroid-hit', 'coin', 'shoot');
     
   },
 
@@ -27,8 +28,8 @@ var app = playground({
 
   render: function(delta) {
 
-    this.layer.clear("#008");
-    this.layer.fillStyle("#fff").font("64px Arial").fillText("Hello World!", 32, 64);
+    this.layer.clear('#008');
+    this.layer.fillStyle('#fff').font('64px Arial').fillText('Hello World!', 32, 64);
 
   },
 

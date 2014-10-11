@@ -96,6 +96,8 @@ ENGINE.Player.prototype = {
       damage: 1
     });
 
+    app.playSound('shoot');
+
   },
 
   step: function(delta) {

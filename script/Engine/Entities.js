@@ -9,6 +9,7 @@ ENGINE.Entities = function() {
 ENGINE.Entities.prototype = {
 
   add: function(object, args) {
+    var entity;
 
     /* create new object */
 
@@ -19,7 +20,7 @@ ENGINE.Entities.prototype = {
       args.index = ++this.index;
       args.collection = this;
 
-      var entity = new object(args);
+      entity = new object(args);
 
     } 
 
@@ -103,4 +104,4 @@ ENGINE.Entities.prototype = {
 
   }
 
-}
+};
