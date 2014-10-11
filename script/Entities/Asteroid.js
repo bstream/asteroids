@@ -34,6 +34,11 @@ ENGINE.Asteroid.prototype = {
     if (this.hp <= 0) {
       app.playSound('asteroid-crush');
       
+      if (data instanceof ENGINE.Bullet) {
+        // Add +1 score to the team that killed me
+        app.game.players[data.team].score++;
+      }
+      
       if (this.splits) {
         this.split();
       }

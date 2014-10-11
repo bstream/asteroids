@@ -27,7 +27,7 @@ var Utils = {
   },
 
   circWrappedDistance: function(a, b) {
-    return this.wrappedDistance(a, b, Math.PI * 2)
+    return this.wrappedDistance(a, b, Math.PI * 2);
   },
 
   wrappedDistance: function(a, b, max) {

@@ -27,9 +27,7 @@ ENGINE.Bullet.prototype = {
         entity.hit(this);
         this.collection.remove(this);
       }
-
     }
-
   },
 
   step: function(delta) {
@@ -55,9 +53,11 @@ ENGINE.Bullet.prototype = {
   render: function() {
 
     if (this.team) {
-      app.layer.drawRegion(app.images.spritesheet, this.redBullet, this.x - 3, this.y - 3, 1);
+      app.layer
+        .drawRegion(app.images.spritesheet, this.redBullet, this.x - 3, this.y - 3, 1);
     } else {
-      app.layer.drawRegion(app.images.spritesheet, this.blueBullet, this.x - 3, this.y - 3, 1);
+      app.layer
+        .drawRegion(app.images.spritesheet, this.blueBullet, this.x - 3, this.y - 3, 1);
     }
   }
 };
