@@ -33,10 +33,16 @@ ENGINE.Asteroid.prototype = {
 
     if (this.hp <= 0) {
       app.playSound('asteroid-crush');
+
+      this.collection.add(ENGINE.Coin,
+      {
+        x: this.x,
+        y: this.y
+      });
       
       if (data instanceof ENGINE.Bullet) {
         // Add +1 score to the team that killed me
-        app.game.players[data.team].score++;
+        app.game.players[data.team].score += 1; // TODO: Extract to constant 
       }
       
       if (this.splits) {
@@ -52,7 +58,8 @@ ENGINE.Asteroid.prototype = {
   split: function() {
 
     for (var i = 0; i < 2; i++) {
-      this.collection.add(ENGINE.Asteroid, {
+      this.collection.add(ENGINE.Asteroid, 
+      {
         x: this.x,
         y: this.y,
         splits: this.splits - 1,
