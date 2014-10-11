@@ -48,10 +48,16 @@ ENGINE.Bullet.prototype = {
     app.game.wrap(this);
   },
 
+  blueBullet: [20, 53, 6, 6],
+
+  redBullet: [43, 53, 6, 6],
+
   render: function() {
 
-    app.layer.fillStyle("#fff").fillRect(this.x - 4, this.y - 4, 8, 8);
-
+    if (this.team) {
+      app.layer.drawRegion(app.images.spritesheet, this.redBullet, this.x - 3, this.y - 3, 1);
+    } else {
+      app.layer.drawRegion(app.images.spritesheet, this.blueBullet, this.x - 3, this.y - 3, 1);
+    }
   }
-
 };
