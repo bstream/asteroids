@@ -96,6 +96,7 @@ ENGINE.Player.prototype = {
       y: this.y,
       direction: this.direction,
       team: this.team,
+      parent: this,
       damage: 1
     });
 

@@ -41,8 +41,8 @@ ENGINE.Asteroid.prototype = {
       });
       
       if (data instanceof ENGINE.Bullet) {
-        // Add +1 score to the team that killed me
-        app.game.players[data.team].score += 1; // TODO: Extract to constant 
+        // Add +1 score to the player that killed me
+        data.parent.score += 1; // TODO: Extract to constant 
       }
       
       if (this.splits) {
