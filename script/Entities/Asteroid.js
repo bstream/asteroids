@@ -99,5 +99,4 @@ ENGINE.Asteroid.prototype = {
     app.layer.restore();
 
   }
-
 };
