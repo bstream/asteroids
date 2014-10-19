@@ -14,14 +14,22 @@ ENGINE.Coin.prototype = {
   constructor: ENGINE.Coin,
 
   collidable: true,
+  // Radius of a coin
+  radius: 5,
+  // How long it takes for the animation to complete in seconds
+  duration: 1, 
 
-  radius: 3,
+  frame: 1,
+
+  delta: 0,
+
+  sprite: [0, 0, 10, 10],
 
   collision: function(object) {
 
     if (object instanceof ENGINE.Player) {
       // Add +5 score to the team that picks me up
-      app.game.players[object.team].score += 5; // TODO: Extract to constant
+      app.game.players[object.team].score += 5;
       app.playSound('coin');
       this.collection.remove(this);
     }
@@ -34,8 +42,11 @@ ENGINE.Coin.prototype = {
 
   render: function(delta) {
 
-    app.layer.fillStyle("#ff0").fillCircle(this.x, this.y, this.radius);
+    this.delta = (this.delta + delta) % this.duration;
+    this.frame = Math.floor((this.delta / this.duration) * 7);
+    this.sprite[0] = 1 + 10 * this.frame;
 
+    app.layer.drawRegion(app.images.coins, this.sprite, this.x - this.radius, this.y - this.radius);
   }
 
 };
