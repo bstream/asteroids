@@ -29,7 +29,7 @@ ENGINE.Coin.prototype = {
 
     if (object instanceof ENGINE.Player) {
       // Add +5 score to the team that picks me up
-      app.game.players[object.team].score += 5;
+      object.score += 5;
       app.playSound('coin');
       this.collection.remove(this);
     }

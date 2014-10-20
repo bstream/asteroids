@@ -34,11 +34,20 @@ ENGINE.Asteroid.prototype = {
     if (this.hp <= 0) {
       app.playSound('asteroid-crush');
 
-      this.collection.add(ENGINE.Coin,
-      {
-        x: this.x,
-        y: this.y
-      });
+      if (Math.random() > 0.7) {
+        this.collection.add(ENGINE.Powerup,
+        {
+          kind: ENGINE.Powerup.MEDIKIT,
+          x: this.x,
+          y: this.y
+        });
+      } else {
+        this.collection.add(ENGINE.Coin,
+        {
+          x: this.x,
+          y: this.y
+        });
+      }
       
       if (data instanceof ENGINE.Bullet) {
         // Add +1 score to the player that killed me
