@@ -34,7 +34,7 @@ ENGINE.Asteroid.prototype = {
     if (this.hp <= 0) {
       app.playSound('asteroid-crush');
 
-      if (Math.random() > 0.7) {
+      if (Math.random() > 0.8) {
         this.collection.add(ENGINE.Powerup,
         {
           kind: ENGINE.Powerup.MEDIKIT,
