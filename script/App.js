@@ -7,6 +7,8 @@ var app = playground({
 
   smoothing: false,
 
+  restartEnabled: false,
+
   create: function() {
 
     this.loadImages('spritesheet', 'coins');
