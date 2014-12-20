@@ -10,11 +10,32 @@ app.game = {
 
     this.addPlayer(app.center.x, app.center.y, 0);
 
-    this.spawnAsteroid();
-    this.spawnAsteroid();
-    this.spawnAsteroid();
-    this.spawnAsteroid();
+    for (var i = 0; i < 5; i++) {
+      this.spawnAsteroid();
+    }
 
+    app.game.asteroidSpawns = 5;
+    app.game.spawnInterval = setInterval(
+      function () {
+        for (var i = 0; i < app.game.asteroidSpawns; i++) {
+          app.game.spawnAsteroid();
+        }
+        app.game.asteroidSpawns++;
+      }, 15 * 1000);
+  },
+
+  restart: function() {
+    delete this.entities;
+    delete this.collisions.callback;
+    delete this.collisions;
+    delete this.players;
+
+    window.location.reload();
+
+  },
+
+  end: function () {
+    this.hud.renderEnd(this.players[0].score);
   },
 
   collisionHandler: function(a, b) {
@@ -92,6 +113,11 @@ app.game = {
         break;
       case "up":
         this.players[0].up = true;
+        break;
+      case "r":
+        if (app.restartEnabled) {
+          this.restart();
+        }
         break;
     }
   },
