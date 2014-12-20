@@ -9,10 +9,17 @@ ENGINE.Powerup = function(args) {
 
 };
 
-ENGINE.Powerup.SHIELD = 0; // TODO correct name please
-ENGINE.Powerup.SPEED = 1; // TODO correct name please
-ENGINE.Powerup.GREEN = 2; // TODO correct name please
+ENGINE.Powerup.SHIELD = 0;
+ENGINE.Powerup.BULLETSPEED = 1; 
+ENGINE.Powerup.BULLETDAMAGE = 2;
 ENGINE.Powerup.MEDIKIT = 3;
+
+ENGINE.Powerups = [
+  ENGINE.Powerup.SHIELD,
+  ENGINE.Powerup.BULLETSPEED,
+  ENGINE.Powerup.BULLETDAMAGE,
+  ENGINE.Powerup.MEDIKIT
+];
 
 ENGINE.Powerup.prototype = {
 
@@ -35,13 +42,17 @@ ENGINE.Powerup.prototype = {
       // If clauses depending on powerup type. Switch case?
       switch(this.kind) {
         case ENGINE.Powerup.SHIELD:
+          object.armor = Math.min(object.maxArmor, object.armor + object.armorStep);
           break;
-        case ENGINE.Powerup.SPEED:
+        case ENGINE.Powerup.BULLETSPEED:
+          object.bulletSpeed = Math.min(object.maxBulletSpeed, object.bulletSpeed + object.bulletSpeedStep);
+          object.maxCooldown = Math.max(object.absoluteMaxCooldown, object.maxCooldown - object.maxCooldownStep);
           break;
-        case ENGINE.Powerup.GREEN:
+        case ENGINE.Powerup.BULLETDAMAGE:
+          object.bulletDamage = Math.min(object.maxBulletDamage, object.bulletDamage + object.bulletDamageStep);
           break;
         case ENGINE.Powerup.MEDIKIT:
-          object.hp = (object.hp < Math.floor(object.maxHp * 0.5) ? object.hp + Math.floor(object.maxHp * 0.5) : object.maxHp);
+          object.hp = Math.min(object.maxHp, object.hp + object.hpStep);
           break;
         default:
           console.log('WARNING: Unknown Powerup kind!');

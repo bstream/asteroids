@@ -27,6 +27,8 @@ ENGINE.Asteroid.prototype = {
 
   collidable: true,
 
+  crushScore: 3,
+
   hit: function(data) {
 
     this.hp -= data.damage;
@@ -34,13 +36,18 @@ ENGINE.Asteroid.prototype = {
     if (this.hp <= 0) {
       app.playSound('asteroid-crush');
 
-      if (Math.random() > 0.8) {
+      var rndSpawn = Math.random();
+
+      if (rndSpawn < 0.5) {
+        var kind = ENGINE.Powerups[Math.floor(Math.random() * ENGINE.Powerups.length)];
+
         this.collection.add(ENGINE.Powerup,
         {
-          kind: ENGINE.Powerup.MEDIKIT,
+          kind: kind,
           x: this.x,
           y: this.y
         });
+        
       } else {
         this.collection.add(ENGINE.Coin,
         {
@@ -51,7 +58,7 @@ ENGINE.Asteroid.prototype = {
       
       if (data instanceof ENGINE.Bullet) {
         // Add +1 score to the player that killed me
-        data.parent.score += 1; // TODO: Extract to constant 
+        data.parent.score += this.crushScore; 
       }
       
       if (this.splits) {

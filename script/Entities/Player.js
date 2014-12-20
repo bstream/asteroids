@@ -21,12 +21,26 @@ ENGINE.Player = function(args) {
 
     cooldown: 0,
     maxCooldown: 0.3,
+    absoluteMaxCooldown: 0.26,
+    maxCooldownStep: 0.01,
 
     hp: 10,
-    maxHp: 10,
+    maxHp: 20,
+    hpStep: 2.5,
+
+    armor: 0,
+    maxArmor: 10,
+    armorStep: 2.5,
+
+    bulletDamage: 1,
+    maxBulletDamage: 4,
+    bulletDamageStep: 1,
+    bulletSpeed: 300,
+    maxBulletSpeed: 400,
+    bulletSpeedStep: 25,
 
     /* points */
-    score: 26
+    score: 0
 
   }, args);
 
@@ -81,11 +95,22 @@ ENGINE.Player.prototype = {
 
   hit: function(data) {
 
-    this.hp = Math.max(0, this.hp - data.damage);
+    if (!this.armor) {
+      this.hp = Math.max(0, this.hp - data.damage);
+
+    } else {
+
+      var damage = this.armor - data.damage;
+      this.armor = Math.max(0, this.armor - data.damage);
+      
+      if (damage < 0) {
+        this.hp = Math.max(0, this.hp - damage);
+      }
+    }
 
     if (this.hp <= 0) {
-
       this.collection.remove(this);
+      app.game.end();
     }
   },
 
@@ -97,7 +122,8 @@ ENGINE.Player.prototype = {
       direction: this.direction,
       team: this.team,
       parent: this,
-      damage: 1
+      damage: this.bulletDamage,
+      speed: this.bulletSpeed
     });
 
     app.playSound('shoot');

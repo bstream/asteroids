@@ -23,13 +23,15 @@ ENGINE.Coin.prototype = {
 
   delta: 0,
 
+  pickupCoinScore: 5,
+
   sprite: [0, 0, 10, 10],
 
   collision: function(object) {
 
     if (object instanceof ENGINE.Player) {
       // Add +5 score to the team that picks me up
-      object.score += 5;
+      object.score += this.pickupCoinScore;
       app.playSound('coin');
       this.collection.remove(this);
     }
