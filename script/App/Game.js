@@ -14,14 +14,14 @@ app.game = {
       this.spawnAsteroid();
     }
 
-    app.game.asteroidSpawns = 5;
+    app.game.asteroidSpawns = 3;
     app.game.spawnInterval = setInterval(
       function () {
         for (var i = 0; i < app.game.asteroidSpawns; i++) {
           app.game.spawnAsteroid();
         }
         app.game.asteroidSpawns++;
-      }, 15 * 1000);
+      }, 10 * 1000);
   },
 
   restart: function() {
