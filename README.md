@@ -1,8 +1,8 @@
 # asteroids 
-    *a game made from [Unfinished asteroids](https://github.com/rezoner/unfinished-asteroids)*
+*a game made from [Unfinished asteroids](https://github.com/rezoner/unfinished-asteroids)*
 
 # Controls
-    Control the ship with your ```arrow keys``` and fire using ```space```.
+Control the ship with your ```arrow keys``` and fire using ```space```.
 
 # Game objects
 * ![Image of Ship](https://andreasbrostrom.se/img/ship.png) - This is you, the ship.
